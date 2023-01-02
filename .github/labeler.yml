@@ -1,0 +1,12 @@
+dependencies:
+  - package.json
+
+gh-actions:
+  - .github/workflows/**/*
+
+components:
+  - src/components/**/*
+
+documentation:
+  - README.md
+  - CODE_OF_CONDUCT.md
