@@ -9,13 +9,16 @@ npm run format:check ||
 
 npx lint-staged ||
 (
-  echo '❗❗eslint check failed😥, try npm run lint:fix or fix it manualy, add changes and commit again❗❗'
+  echo '🟥🟥eslint check failed😥, try npm run lint:fix or fix it manualy, add changes and commit again🟥🟥'
   false;
 )
 
-echo "⚠️Alright... Code looks good, Trying to build now"
+echo "🟨 Alright... Code looks good, Trying to build now"
 
 npm run build ||
 (
-  echo "❗❗Oh s**, build faild, View the errors above to see why❗❗"
+  echo "🟥🟥 Oh s**, build faild, View the errors above to see why🟥🟥"
+  false;
 )
+
+echo "🟩🟩 Everything looks good, commiting now 🟩🟩"
