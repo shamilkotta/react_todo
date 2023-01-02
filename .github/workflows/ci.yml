@@ -44,7 +44,6 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.WORKFLOW_ACCESS }}
           commit-message: "style: code files prettified"
           branch: code-styling
           delete-branch: true
