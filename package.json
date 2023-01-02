@@ -50,7 +50,7 @@
   "bugs": {
     "url": "https://github.com/shamilkotta/react_todo/issues"
   },
-  "homepage": "https://github.com/shamilkotta/react_todo#readme",
+  "homepage": "https://shamilkotta.github.io/react_todo",
   "devDependencies": {
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
