@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "**"
+      - main
   pull_request:
     branches:
-      - "**"
+      - main
 
 jobs:
   lint:
@@ -33,23 +33,16 @@ jobs:
     name: Format code
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout to branch
+      - name: checkout
         uses: actions/checkout@v3
 
-      - name: Setup node
+      - name: setup node env
         uses: actions/setup-node@v3
-
-      - name: Format code
-        id: check
-        run: npm ci && npm run format
-
-      - name: Create PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "style: code files prettified"
-          branch: code-styling
-          delete-branch: true
-          title: "style: code files prettified"
-          labels: code-styling
-          assignees: shamilkotta
+          node-version: 18
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: run format
+        run: npm run format:check
