@@ -84,14 +84,114 @@ function App() {
       </div>
       <div className="todo-progress todo-container">
         <div className="todo-container-head">
-          <h3>Todo</h3>
-          <div>+</div>
+          <h3>In Progress</h3>
+          <div className="todo-data">
+            {todoData.map(
+              (data) =>
+                data.status === "active" && (
+                  <div className="todo-card" key={data.id}>
+                    <h4>{data.title}</h4>
+                    <p>{data.description}</p>
+                    <div className="todo-actions">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.map((ele) =>
+                              ele.id === data.id
+                                ? { ...ele, status: "todo" }
+                                : ele
+                            )
+                          );
+                        }}
+                      >
+                        Todo
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.map((ele) =>
+                              ele.id === data.id
+                                ? { ...ele, status: "done" }
+                                : ele
+                            )
+                          );
+                        }}
+                      >
+                        Completed
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.filter((ele) => ele.id !== data.id)
+                          );
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )
+            )}
+          </div>
         </div>
       </div>
       <div className="todo-done todo-container">
         <div className="todo-container-head">
-          <h3>Todo</h3>
-          <div>+</div>
+          <h3>Done</h3>
+          <div className="todo-data">
+            {todoData.map(
+              (data) =>
+                data.status === "done" && (
+                  <div className="todo-card" key={data.id}>
+                    <h4>{data.title}</h4>
+                    <p>{data.description}</p>
+                    <div className="todo-actions">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.map((ele) =>
+                              ele.id === data.id
+                                ? { ...ele, status: "active" }
+                                : ele
+                            )
+                          );
+                        }}
+                      >
+                        In progress
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.map((ele) =>
+                              ele.id === data.id
+                                ? { ...ele, status: "todo" }
+                                : ele
+                            )
+                          );
+                        }}
+                      >
+                        Todo
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTodoData((arr) =>
+                            arr.filter((ele) => ele.id !== data.id)
+                          );
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )
+            )}
+          </div>
         </div>
       </div>
     </div>
