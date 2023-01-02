@@ -1,6 +1,5 @@
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,12 +11,55 @@ function App() {
       <div className="todo-task todo-container">
         <h3>Todo</h3>
         <div className="todo-data">
-          {todoData.map((data, index) => (
-            <div className="todo-card" key={index}>
-              <h4>{data.title}</h4>
-              <p>{data.description}</p>
-            </div>
-          ))}
+          {todoData.map(
+            (data) =>
+              data.status === "todo" && (
+                <div className="todo-card" key={data.id}>
+                  <h4>{data.title}</h4>
+                  <p>{data.description}</p>
+                  <div className="todo-actions">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTodoData((arr) =>
+                          arr.map((ele) =>
+                            ele.id === data.id
+                              ? { ...ele, status: "active" }
+                              : ele
+                          )
+                        );
+                      }}
+                    >
+                      In progress
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTodoData((arr) =>
+                          arr.map((ele) =>
+                            ele.id === data.id
+                              ? { ...ele, status: "done" }
+                              : ele
+                          )
+                        );
+                      }}
+                    >
+                      Completed
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTodoData((arr) =>
+                          arr.filter((ele) => ele.id !== data.id)
+                        );
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              )
+          )}
         </div>
         <button
           type="button"
@@ -36,6 +78,7 @@ function App() {
             onSubmit={(newdata) => {
               setTodoData((data) => [...data, newdata]);
             }}
+            currentId={todoData.length + 1}
           />
         )}
       </div>
@@ -55,13 +98,23 @@ function App() {
   );
 }
 
-function AddTodoItemForm({ onClose, onSubmit }) {
-  const [formData, setFormData] = useState({ title: "", description: "" });
+function AddTodoItemForm({ onClose, onSubmit, currentId }) {
+  const [id, setId] = useState(currentId);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    id,
+    status: "todo",
+  });
+
+  useEffect(() => {
+    setFormData({ title: "", description: "", id, status: "todo" });
+  }, [id]);
 
   const submitForm = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    setFormData({ title: "", description: "" });
+    setId((currentValue) => currentValue + 1);
   };
 
   return (
@@ -80,6 +133,7 @@ function AddTodoItemForm({ onClose, onSubmit }) {
         id="title"
         placeholder="Title"
         value={formData.title}
+        required
         onChange={(e) => {
           setFormData((data) => ({ ...data, title: e.target.value }));
         }}

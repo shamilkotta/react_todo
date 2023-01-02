@@ -107,3 +107,40 @@
   cursor: pointer;
   margin-bottom: 5px;
 }
+
+.todo-card {
+  background-color: rgb(49, 49, 49);
+  padding: 10px 8px;
+  border-radius: 5px;
+  margin: 6px 0;
+  border: 1px solid rgb(57, 57, 57);
+}
+
+.todo-card h4,
+p {
+  margin: 0;
+}
+
+.todo-actions {
+  background-color: black;
+  margin: 10px 0 0;
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 5px;
+  padding: 3px 2px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.todo-actions button {
+  background-color: #00000000;
+  color: rgb(43, 43, 175);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.todo-actions label {
+  margin: 0 5px 0 0;
+}
