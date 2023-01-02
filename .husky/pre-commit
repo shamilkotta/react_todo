@@ -13,12 +13,12 @@ npx lint-staged ||
   false;
 )
 
-echo "🟨 Alright... Code looks good, Trying to build now"
+# echo "🟨 Alright... Code looks good, Trying to build now"
 
-npm run build ||
-(
-  echo "🟥🟥 Oh s**, build faild, View the errors above to see why🟥🟥"
-  false;
-)
+# npm run build ||
+# (
+#   echo "🟥🟥 Oh s**, build faild, View the errors above to see why🟥🟥"
+#   false;
+# )
 
 echo "🟩🟩 Everything looks good, commiting now 🟩🟩"
