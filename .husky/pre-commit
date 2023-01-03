@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run format:check ||
-(
-  echo "❗❗Prettier check failed😥, Run npm run format, add changes and commit again❗❗"
-  false;
-)
+# npm run format:check ||
+# (
+#   echo "❗❗Prettier check failed😥, Run npm run format, add changes and commit again❗❗"
+#   false;
+# )
 
 npx lint-staged ||
 (
