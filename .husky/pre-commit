@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+### since lint-staged covers all the prettier and lint chcking we don't need explicit format check
 # npm run format:check ||
 # (
 #   echo "❗❗Prettier check failed😥, Run npm run format, add changes and commit again❗❗"
@@ -13,6 +14,7 @@ npx lint-staged ||
   false;
 )
 
+### you can check for build process is working or not
 # echo "🟨 Alright... Code looks good, Trying to build now"
 
 # npm run build ||
